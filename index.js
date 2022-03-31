@@ -1,6 +1,6 @@
-const RPC = require("discord-rpc"); 
+const RPC = require("discord-rpc");
 
-const clientId = YOUR_CLIENT_ID
+const clientId = 660930457575096330
 
 const client = new RPC.Client({ transport: 'ipc' });
 
@@ -20,8 +20,8 @@ let releaseTimes = {
 }
 
 /**
- * 
- * @param {Number} time 
+ *
+ * @param {Number} time
  */
 function dateString(time) {
     let dateObject = new Date(time);
@@ -41,7 +41,7 @@ function dateString(time) {
 function getNextApp() {
     let keys = Object.keys(releaseTimes);
     let sorted = keys.sort((a,b) => +a-+b);
-    
+
     let date = new Date();
     for(let index in sorted) {
         let time = sorted[index];
@@ -50,8 +50,8 @@ function getNextApp() {
 }
 
 /**
- * 
- * @param {String} message 
+ *
+ * @param {String} message
  */
 function updateRPC(message) {
     let nextApp = getNextApp();
@@ -97,7 +97,7 @@ let lastMessage = -1;
 
 function randomMessage() {
     let slot = Math.floor(Math.random() * messages.length);
-    if(slot == lastMessage) return randomMessage();
+    if(slot === lastMessage) return randomMessage();
     lastMessage = slot;
     return messages[slot];
 }
@@ -110,7 +110,7 @@ client.on('ready', () => {
 });
 
   // Log in to RPC with client id
-client.login({ clientId}).then(promise => {
+client.login({ clientId }).then(promise => {
     console.log("Login successfull")
 }).catch(err => {
     console.error(err)
